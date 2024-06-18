@@ -1,0 +1,18 @@
+---
+layout: post
+read_time: true
+show_date: true
+title:  깃허브레포지토리 시작
+date:   2024-06-18 15:00:20 -0600
+description: 깃허브레포지토리 시작
+img: assets/img/posts/20240618/woozi.jpg
+tags: [coding, machine learning, optimization, deep Neural networks]
+author: soi Jeong
+
+toc: no # leave empty or erase for no TOC
+---
+드디어 깃허브 블로그를 만들었다. 그래도 찾아보니 블로그에서 잘 나와있고 지킬을 사용해서 간단하게 템플릿을 쓸 수 있어서 다행이라고 생각했다 
+그동안은 이미 만들어진 블로그만을 사용해서 잘 몰랐는데 깃허브 블로그를 사용하니까 다른 코드처럼 커밋하고 푸시해야 한다는 점이 신기했다 
+
+
+
