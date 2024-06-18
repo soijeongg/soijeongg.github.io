@@ -25,20 +25,15 @@ highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code h
 
 # Author settings
 author: soi Jeong # add your name
-author-pic: Myself_Neon_grey.jpg
+author-pic: white.jpg
 about-author: junior background developer.
 
 # Contact links
-email: armando.maynez@gmail.com # Add your Email address
-phone: # Add your Phone number
+email: writer__soi@naver.com # Add your Email address
 website: https://soijeongg.github.io # Add your website
-linkedin: amaynez # Add your Linkedin handle
 github: soijeongg # Add your Github handle
 twitter: '@Raon_Bless' # Add your Twitter handle
 
-
-# Newsletter
-mailchimp: "https://github.us1.list-manage.com/subscribe/post?u=8ece198b3eb260e6838461a60&amp;id=397d90b5f4"
 
 # Tracker
 analytics: G-R8SZS2YBZK
@@ -73,7 +68,10 @@ compress_html:
   startings: [html, head, body]
 
 # Outputting
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul
+
+# Language
+language: ko
 
 category_archive:
   type: liquid
