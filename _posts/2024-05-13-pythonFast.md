@@ -215,6 +215,8 @@ html을 상속받아 한 부분을 상황에 맞게 바꿔 쓸 수 있는 기능
 사용하는 js나 css는 매번 바뀌기 때문에 진자2에서 사용하는 문법인 url_for를 사용한다 
 이 문법을 사용하면 정적파일 경로를 동적으로 바꿀 수 있다 
 ```html
+{% raw %}
 <link rel="stylesheet" href="{{ url_for('static', path= 'css/home.css')}}">
+{% endraw %}
 ```
 이렇게 사용하면 된다 
