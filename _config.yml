@@ -1,89 +1,113 @@
-# Site settings
-title: soijeongg.github.io
-description: 'soijeongg.github.io' # this means to ignore newlines until "baseurl:"
-permalink: ':title:output_ext'
-baseurl: "/soijeongg" # the subpath of your site, e.g. /blog
-url: "https://the-mvm.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-logo: "/assets/img/branding/MVM-logo-full.svg"
-logo-icon: "/assets/img/branding/MVM-symbol.svg"
-logo-icon-SEO: "/assets/img/branding/MVM-symbol-black.png" # must be a non SVG file
-
-# Night/Dark mode
-# Default mode is "auto", "auto" is for auto nightshift
-# (19:00 - 07:00), "manual" is for manual toggle, and
-# "on/off" is for default on/off.
-#
-# Whatever the user's choice is, it will supersede the
-# default setting of the site and be kept during the
-# visit (session). Only the dark mode setting is "manual",
-# it will be always kept on every visit (i.e. no matter
-# the browser is closed or not)
-night_mode: "auto"
-
-logo-dark: "/assets/img/branding/MVM-logo-full-dark.svg"
-highlight_theme: syntax-base16.monokai.dark # select a dark theme for the code highlighter if needed
-
-# Author settings
-author: soi Jeong # add your name
-author-pic: white.jpg
-about-author: junior background developer.
-
-# Contact links
-email: writer__soi@naver.com # Add your Email address
-website: https://soijeongg.github.io # Add your website
-github: soijeongg # Add your Github handle
-twitter: '@Raon_Bless' # Add your Twitter handle
+# Site Settings
+name: Jekflix
+title: Jekflix | A blog theme for Jekyll
+description: Jekflix is a template for Jekyll inspired by Netflix and made by
+  Thiago Rossener.
+tags:
+  - blog
+  - template
+  - jekyll
+  - theme
+  - netlify
+show_hero: true
+menu:
+  - title: Home
+    url: /
+  - title: About
+    url: /about
+  - title: Contact
+    url: /contact
+  - title: Feed
+    url: /feed.xml
+email: youremail@test.com
+# See: https://disqus.com/
+disqus_username: disqus_username
+# Contact Form Setting
+# See: https://formspree.io/
+formspree_form_id: formspree_form_id
 
 
-# Tracker
-analytics: G-R8SZS2YBZK
-fbadmin: ar.maybach
+# Social Media Settings
+# Remove the item if you don't need it
+github_username: github_username
+facebook_username: facebook_username
+twitter_username: twitter_username
+instagram_username: instagram_username
+linkedin_username: linkedin_username
+medium_username: medium_username
 
-# Paginate
-paginate: 6
-paginate_path: 'page:num'
-words_per_minute: 200
 
-extensions:
-  mermaid_enable: true
+# Posts Settings
+show_time_bar: true
+show_modal_on_exit: false
+show_modal_on_finish_post: true
+two_columns_layout: true
 
-# Comments
-comments: utteranc  #[disqus, utteranc]
-comments_opts:
-  comments_curtain: yes # leave empty to show the disqus embed directly
-  repo: # The GitHub repo URL.  https://utteranc.es/
-  issue_term: # The GitHub issue label
-  label: # The GitHub comments label
-  theme: # The GitHub comment's there. e.g. github-dark
-  # Disqus
-  discus_identifier: # Add your discus identifier
+
+# Advanced Settings
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+google_analytics: "UA-XXXXXXXX-X"
+language: "en"
+categories_folder: category
+sent_message_url: "/contact/message-sent/"
+
 
 # Build settings
 markdown: kramdown
-mathjax: true
 highlighter: rouge
-compress_html:
-  clippings: all
-  comments: all
-  startings: [html, head, body]
+permalink: /:title/
+collections:
+  authors:
+    output: true
+paginate_path: "/page/:num/"
+show_get_theme_btn: true
+use_logo: false
 
-# Outputting
-timezone: Asia/Seoul
+# Content paginator
+paginate_content:
+  enabled: true
+  debug: false
+  collections:
+    - posts
+  auto: false
+  separator: "--page-break--"
+  permalink: "/:num/"
+  seo_canonical: true
+  properties:
+    part:
+      is_generated: true
+    last:
+      is_generated: true
+    single:
+      is_generated: true
 
-# Language
-language: ko
-
-category_archive:
-  type: liquid
-  path: /categories/
-
+# SASS
 sass:
   style: compressed
 
+# Plugins
 plugins:
   - jekyll-paginate
-  - jekyll-feed
-  - jekyll-sitemap
+  - jekyll-paginate-content
 
-include: [_pages]
-exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock", "package-lock.json", "assets/css/sass/"]
+# Exclude my node related stuff
+exclude: [
+  'docs/',
+  'vendor/',
+  'LICENSE',
+  'CHANGELOG.md',
+  'jekflix.gemspec',
+  'package.json',
+  'package-lock.json',
+  'src',
+  'node_modules',
+  'initpost.sh',
+  'Gemfile',
+  'Gemfile.lock',
+  'gulpfile.js',
+  'README.md'
+]
+
+# Theme
+version: v3.1.2
