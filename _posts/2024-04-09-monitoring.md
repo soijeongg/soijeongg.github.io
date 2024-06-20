@@ -5,7 +5,7 @@ show_date: true
 title: "도커로 그라파나, 프로메테우스 , node expoter를 적용해보자!"
 date: 2024-04-09 15:00:20 -0600
 description: "도커로 그라파나, 프로메테우스 , node expoter를 적용해보자!"
-image: https://example.com/path/to/image.png
+
 tags: 
     - coding
     - diary

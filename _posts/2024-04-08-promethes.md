@@ -5,7 +5,7 @@ show_date: true
 title: "프로메테우스를 적용해보자 !"
 date: 2024-04-08 15:00:20 -0600
 description: "프로메테우스를 적용해보자 !"
-image: https://example.com/path/to/image.png
+
 tags: 
     - coding
     - diary

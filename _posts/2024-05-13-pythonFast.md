@@ -58,7 +58,7 @@ uvicorn main:app --reload로 실행이 가능하다 기본 포트는 8000번인�
 
 ### 기본예제 
 ```python
-{% raw %}
+
 from fastapi import FastAPI
 app = FastAPI()
 @app.get("/hello")
@@ -73,7 +73,7 @@ app.py파일에 이렇게 코드를 작성해주고 위의 uvicorn main:app --re
 ### response와 request
 fastapi에서 response와 request를 사용하기 위해서는 fastapi모듈에서 가져와야 한다 
 ```python
-{% raw %}
+
 from fastapi import FastAPI, Request, Response,HTTPException
 app = FastAPI()
 
@@ -91,7 +91,7 @@ HTTPException는 에러를 만들어낸다  const error = new Error 이렇게\
 pydantic은 파이썬의 타입표기를 이용햐 데이터의 유효성을 검사하고 설정관리를 수행하는 라이브러리로 데이터 구조를 검증할 수 있다 
 객체를 만들고 요청에서 사용하면 들어온 http요청중 같은 이름인것을 찾아 데이터를 처리한다 
 ```python
-{% raw %}
+
 class login(BaseModel):
     id: str
     password: str
@@ -129,9 +129,9 @@ Django에서 영감을 얻었지만 확장 됨
 정적인 HTML을 동적으로 바꿔준다
 진자2가 해당 HTML문법을 템플릿으로 만들고 안의 파이썬 코드를 실행
 템플릿을 체운 후 최종 HTML파일을 만듬
-'{{ 변수명}}'
-'{{% 파이썬 소스코드}} '여기에 끝에 for 나 if면 '{{forend}}' 이런 식으로 붙은다
-주석은'{# #}'
+{% raw %}{{ 변수명}}{% endraw %}
+{% raw %}{{% 파이썬 소스코드}}{% endraw %}여기에 끝에 for 나 if면 {% raw %}{{forend}}{% endraw %} 이런 식으로 붙은다
+주석은{% raw %}{# #}{% endraw %}
 이걸 사용해 html파일을 만든다 
 그러니까 모듈화를 해서 조각조각 모을 수 있다 
 
@@ -142,7 +142,7 @@ include는 HTML을 부분부분 나누어 재사용 가능한 형태로 가공�
 중복되는 부분 가지고 오는것
 
 ```html
-{% raw %}
+
 <!--head.html-->
 <!DOCTYPE html>
 <html lang="en">
@@ -166,6 +166,7 @@ html을 상속받아 한 부분을 상황에 맞게 바꿔 쓸 수 있는 기능
 <!--{% block 이름 %}
 상황별로 바꾸고 싶은 내용
 {% endblock %} -->
+{% endraw %}
 ```
 이렇게 받은 후 동적으로 변할 부분을 바꾸기 위해 '{% block content %}'를 사용한다 
 
@@ -194,6 +195,7 @@ html을 상속받아 한 부분을 상황에 맞게 바꿔 쓸 수 있는 기능
     <title>{% block title %}home{% endblock %}</title>
     
     {% endblock %}
+    {% endraw %}
 </head>
 ```
 이렇게 base파일을 만들고 블럭헤드를 만든다 
@@ -206,6 +208,7 @@ html을 상속받아 한 부분을 상황에 맞게 바꿔 쓸 수 있는 기능
 <link rel="stylesheet" href="{{ url_for('static', path= 'css/home.css')}}">
 {% block content %}
 <main id="homemain" class="cont_main">
+{% endraw %}
 ```
 
 이렇게 서버를 열고 진자2를 사용해 html을 사용할 수 있다 

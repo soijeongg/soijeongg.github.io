@@ -5,7 +5,7 @@ show_date: true
 title: "nodemailer로 인증메일 보내기"
 date: 2024-03-22 15:00:20 -0600
 description: "nodemailer로 인증메일 보내기"
-image: https://example.com/path/to/image.png
+
 tags: 
     - coding
     - diary
