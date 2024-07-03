@@ -90,7 +90,7 @@ export const AppDataSource = new DataSource({
   synchronize: process.env.TYPEORM_SYNCHRONIZE === 'true', //애리케이션을 시작할 때 엔티티와 데이터베이스 테이블을 자동으로 동기화
   "ssl": {
     "rejectUnauthorized": false
-  }, //15버전부터 인증서 뭐가 바뀌었다 해서 추가 
+  }, // aws 사용시 no pg_hba.conf entry 에러 연결을 강제 설정함 
   logging: process.env.TYPEORM_LOGGING === 'true',
   entities: [User], //매핑할 엔티티
   migrations: [],
