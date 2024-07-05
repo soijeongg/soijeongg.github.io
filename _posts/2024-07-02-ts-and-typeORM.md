@@ -2,9 +2,9 @@
 layout: post
 read_time: true
 show_date: true
-title: "typeORM연결방법 및 레이어드 패턴에 IRequest와 DTO"
+title: "typeORM연결방법 및 레이어드 패턴에 interface와 DTO"
 date: 2024-07-02 15:01:20 -0600
-description: "typeORM연결방법 및 레이어드 패턴에 IRequest와 DTO" 
+description: "typeORM연결방법 및 레이어드 패턴에 interface와 DTO" 
 image: https://i.pinimg.com/564x/e5/dc/05/e5dc0598585f65e406f8b476e22da6cc.jpg
 tags: 
     - coding
