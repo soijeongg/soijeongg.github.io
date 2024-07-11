@@ -33,20 +33,20 @@ nano 편집기를 사용해 설정파일을 연다
 **설정파일의 앞의 ;은 주석이기 때문에 이걸 지워야 한다**
 6. 변경사항 저장을 위해 Ctrl + X를 누르고 Y를 누르고 Enter
 7. 서버를 재시작 brew services restart grafana
-![](https://velog.velcdn.com/images/soijeongg/post/58e52dd2-51fa-40db-90da-a2a9b12762b9/image.png)
+![](../assets/img/uploads/grafa.png)
 3000번에서 3001번으로 바꾸고 연결완료!
 ### 설치 
 1. brew에 입력
 brew reinstall prometheus
 brew services start prometheus
-![](https://velog.velcdn.com/images/soijeongg/post/ac15031c-cd71-4a6a-af48-61f97a8c8947/image.png)
+![](../assets/img/uploads/prometh.png)
 우리 파일을 적용하기 위해 맥에서  nano /opt/homebrew/etc/prometheus.yml
 그리고 여기가서 했는데 오류나서 나는 그냥 그 파일에 들어가서 vscode로 열기로 했다 
 - 맥에서 비밀 파일을 열기 위해 커맨드 shift .을 눌러 핀더에서 숨겨진 폴더 보기 
 다운로드에서 상위폴더 -> 유저에서 또 상위폴더 
 거기서 숨겨진 폴더에 opt가 있다 
 거기 들어가면 homebrew존재 
-![](https://velog.velcdn.com/images/soijeongg/post/263b73c0-d644-4245-b124-d65c22fc1b5e/image.png)
+![](../assets/img/uploads/etc'.png)
 etc안의 prometheus.yml을 vscode로 열기 
 
 ### 그라파나와 프로메테우스 
@@ -68,9 +68,9 @@ cd /opt/homebrew/etc/
 그후 ls prometheus* 를 입력해 파일을 찾는다 
 
 4.nano /opt/homebrew/etc/prometheus.yml를 사용해 파일을  vs code로 연다 
-![](https://velog.velcdn.com/images/soijeongg/post/38c8e603-1b94-4afd-9308-4a66fc9515bc/image.png)
+![](../assets/img/uploads/vsco.png)
 입력하고 restart를 하면 드디어!!! localhost:9090이 열린다 
-![](https://velog.velcdn.com/images/soijeongg/post/b869b4c7-48e4-4b83-ba96-c4ff3af4cbdc/image.png)
+![](../assets/img/uploads/down.png)
 ### express에 작용
 express에 적용하기 위해 prom-client를 설치한다 (yarn add prom-client)
 - 설치하는 이유는? 
@@ -131,7 +131,7 @@ Histogram은 주로 이벤트의 분포나 지연 시간과 같이 범위에 따
  HTTP 요청의 응답 시간을 측정할 때 사용
  범위에 따라 샘플이 그룹화되므로, 각 범위에 해당하는 버킷(bucket) 값과 샘플 개수를 포함
  
-![](https://velog.velcdn.com/images/soijeongg/post/59b6caab-6aed-41c3-819b-0ed5633618fb/image.png)
+![](../assets/img/uploads/up.png)
 제대로 엔드포인트를 설정하면 이렇게 up이라고 초록색이 나오게 된다 
 
 ### 코드 
@@ -313,9 +313,9 @@ setInterval(() => {
 ``` 
 app.js에 연동한다 
 이러면 프로메테우스에서 확인 할 수 있게 된다 
-![](https://velog.velcdn.com/images/soijeongg/post/0f2d5594-d0e0-4f50-9d0a-b934fc234fad/image.png)
+![](../assets/img/uploads/metric.png)
 이 엔드포인트를 클릭하면
-![](https://velog.velcdn.com/images/soijeongg/post/d8b4b1f3-1ee9-44a5-8e91-9958626e05ce/image.png)
+![](../assets/img/uploads/json.png)
 
 ### 그라파나 연동
 그라파나의 대시보드에서 찾아보니까 다른 사람들꺼 import해서 사용한다고 해서 했는데 다 no data떠서 처음에는 진짜 멘붕이였다 
@@ -325,7 +325,7 @@ https://www.inflearn.com/questions/267420/%EB%8C%80%EC%89%AC%EB%B3%B4%EB%93%9C%E
 그래서 이 쿼리를 찾기 위해 설정파일을 찾고 있었는데 데이터소스 프로메테우스 explore거 있더라 여기 들어가서 쿼리가 처음에는 빌더인데 코드로 바꾸니까 나오더라 
 그래서 각각 지표를 넣으니까 그래프가 나왔다 
 그리고 대시보드에 저장하고 대시보드에 들어갔더니 aadd query가 있어서 하나씩 추가할 수 있었다 
-![](https://velog.velcdn.com/images/soijeongg/post/4b2ef690-ff63-4171-8593-9be05ea73d89/image.png)
+![](../assets/img/uploads/gra.png)
 그래프 연동완료!
 
 다음에는 node expoter를 사용해서 전체 모니터링 하는걸 글로 써봐야겠다 

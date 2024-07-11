@@ -146,13 +146,13 @@ services:
 로컬과 도커를 연결시켜주는 외부바인딩은 로컬에서 들어가는 것이기 때문에 이 포트는 다른 것과 겹치면 안된다 
 
 이렇게 되면 이제 로컬에서 9091포트로 들어가면 도커 내부에서 9090포트로 바꿔서 들어갈 수 있게 된다 
-![](https://velog.velcdn.com/images/soijeongg/post/6ba6000f-88df-42b5-8689-39f014327dea/image.png)
+![](../assets/img/uploads/ups.png)
 만약 이게 unknown이거나 down이면도커 데스크톱 들어가서 잘 되고있는지 확인하기!
 아마 오류나서 실행이 안되고 있을것-> 이걸 제대로 바꿔줘야 실행이 된다 
 혹시 이 node expoter는 되고 있는데 다른게 안되서 에러가 날 수도? 나는 그랬던거 같은데 일단 도커 데스크톱 들어가서 확인해보자 
 모든 에러를 다 잡으면 이렇게 up이라고 뜬다 
 그리고 원래 다른 엔드 포인트들은 여기 들어가면 어떤걸 수집하고 있는지 나오지만 애는 node-expoter가 있는 곳으로 열어야 뭘 수집하고 있는지가 뜬다
-![](https://velog.velcdn.com/images/soijeongg/post/c865e971-fd91-44ed-a1d9-c9c424c8dcf7/image.png)
+![](../assets/img/uploads/nodeex.png)
 여기 들어가면 볼 수 있다 
 
 ### 그라파나 연동
@@ -163,6 +163,6 @@ services:
 그곳에 가 프로메테우스를 선택하고 주소를 node-expoter:9100을 사용한다 
 node-expoter는 도커컴포즈 빌드할때 사용했던 이름 그리고 포트가 왜 외부바인딩이 아니라 내부 바인딩을 사용하냐면 외부에서 사용하는게 아니라 내부에서 사용하는거라고  생각한다 
 연동이 잘되면 (test& save 인가 그 버튼 누르고 연동 되면 초록색으로 알려준다)
-![](https://velog.velcdn.com/images/soijeongg/post/b32ffd0a-68ae-479c-a19a-209eb2de1b1f/image.png)
+![](../assets/img/uploads/modal.png)
 
 이렇게 잘 나온다 

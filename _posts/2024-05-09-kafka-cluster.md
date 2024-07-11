@@ -26,7 +26,7 @@ ec2 인스턴스를 3개를 생성해 준비한다
 
 ### 카프카 설치 
 아파치 카프카 공식 사이트에 들어가서 현재 최신 버전을 설치한다 
-![](https://velog.velcdn.com/images/soijeongg/post/8424fbc4-52a0-49af-9d9c-7ee1b546fd61/image.png)
+![](../assets/img/uploads/indexof.png)
 나는 가장 아래 있는 3.7.0을 선택해 설치했다 
 ```shell
 wget https://downloads.apache.org/kafka/3.7.0/kafka_2.13-3.7.0.tgz
@@ -111,4 +111,4 @@ bin/kafka-server-start.sh -daemon ./config/server.properties
 ```
 
 ### 토픽 생성
-![](https://velog.velcdn.com/images/soijeongg/post/51113b0b-da54-4a34-804b-295af09a2eb5/image.png)
+![](../assets/img/uploads/ropli.png)

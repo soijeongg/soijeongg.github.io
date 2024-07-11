@@ -5,7 +5,7 @@ show_date: true
 title: "Python fastapi 설치 및 사용"
 date: 2024-05-13 15:00:20 -0600
 description: "Python fastapi 설치 및 사용"
-image: https://velog.velcdn.com/images/soijeongg/post/a37a92a2-678e-4f28-9162-248b6abeeaa6/image.png
+image: https://tech.osci.kr/wp-content/uploads/2023/09/image-20230920-051212.png
 tags: 
     - coding
     - diary
@@ -23,7 +23,7 @@ toc: no # leave empty or erase for no TOC
 
 2. fastapi는 swagger을 기반으로 자동으로 api문서를 생성한다 
 직접 문서를 만들어서 소통하는 것보다 더 정확하고 쉽게 문서를 만들고 소통할 수 있게 해준다 
-![](https://velog.velcdn.com/images/soijeongg/post/4f474cd9-4b5d-4df2-a4e7-04a548262cf8/image.png)
+![](../assets/img/uploads/swgger.png)
 
 3. fastapi는 비동기 프로그래밍을 지원하며, node나 go에 비견될 정도로 빠르다 
 (개인적으로 node도 써봤지만 node는 python보다 더 사용하기가 어렵고 번거롭다고 느꼈다)
@@ -52,7 +52,7 @@ fastapi와 비동기 웹서버인 uvicorn을 설치한다
 - uvicorn이란?
 ASGI 한 종류로 fast api와 함꼐 비동기적으로 작동함
 Asynchronous Server Gateway Interface의 약자 비동기 웹 서버
-![](https://velog.velcdn.com/images/soijeongg/post/718841c9-0c8f-49e3-b14d-97a983204b10/image.png)
+![](../assets/img/uploads/uvicon.png)
 fastapi는 혼자서 사용할 수 없고 웹서버가 있어야 한다 
 uvicorn main:app --reload로 실행이 가능하다 기본 포트는 8000번인데 혹시 다른것과 같아서 바꿀려면 uvicorn app:app --host 0.0.0.0 --port 1234 이렇게 호스트를 0.0.0.0으로 하고 포트를 맘대로 설정할 수 있다 
 
@@ -66,7 +66,7 @@ def hello():
 return {"message": "hello"}
 ```
 app.py파일에 이렇게 코드를 작성해주고 위의 uvicorn main:app --reload를 사용해 실행시키면 
-![](https://velog.velcdn.com/images/soijeongg/post/7e5fba5e-5e15-4a25-bf26-1e068e84d8f4/image.png)
+![](../assets/img/uploads/localhost.png)
 이렇게 잘 나온다 
 가장 기본적인 오직 서버를 열어서 보여주기만 하는 예제였다 
 

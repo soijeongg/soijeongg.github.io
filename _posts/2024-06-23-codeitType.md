@@ -5,7 +5,7 @@ show_date: true
 title: "타입스크립트+typeORM+express(1)"
 date: 2024-06-23 15:00:20 -0600
 description: "기본 구조 및 RDS연결 "
-image: https://i.pinimg.com/736x/33/62/6a/33626ae9adfa3f30190d8734032315b2.jpg
+image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmti6Nff9TjuR5H2OKuupm6qm-l218uRLwZw&s
 tags: 
     - coding
     - diary

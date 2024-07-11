@@ -2,10 +2,10 @@
 layout: post
 read_time: true
 show_date: true
-title: "[항해 99] 주특기 1차 과제"
-date: 2024-02-20 15:00:20 -0600
-description: "[항해 99] 주특기 1차 과제"
-image: https://i.pinimg.com/736x/33/62/6a/33626ae9adfa3f30190d8734032315b2.jpg
+title: "[항해 99] ec2와 도커 허브 사용 cd 구축기"
+date: 2024-03-20 15:00:20 -0600
+description: "[항해 99] cd 구축기"
+image: https://hanghae99.spartacodingclub.kr/images/main/og.jpg
 tags: 
     - coding
     - diary

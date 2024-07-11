@@ -5,7 +5,7 @@ show_date: true
 title: "[node.js]passport.js 설정방법"
 date: 2024-03-17 15:00:20 -0600
 description: "[node.js]passport.js 설정방법"
-image: https://velog.velcdn.com/images/soijeongg/post/39a726ef-36b8-470e-950c-b51e6e39d175/image.png
+image: ../assets/img/uploads/passport.png
 tags: 
     - coding
     - diary
