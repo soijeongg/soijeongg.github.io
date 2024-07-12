@@ -2,9 +2,9 @@
 layout: post
 read_time: true
 show_date: true
-title: "[항해 99] 주특기 1차 과제"
+title: "node expoter 가 수집하는 메트릭 정리"
 date: 2024-04-15 15:00:20 -0600
-description: "[항해 99] 주특기 1차 과제"
+description: "node expoter 가 수집하는 메트릭 정리"
 image: https://velog.velcdn.com/images/soijeongg/post/4a3b4529-7783-4201-90f4-03de54197e08/image.png
 tags: 
     - coding

@@ -4,7 +4,7 @@ read_time: true
 show_date: true
 title: "[node.js]passport.js 설정방법"
 date: 2024-03-17 15:00:20 -0600
-description: "[node.js]passport.js 설정방법"
+description: "[node.js]passport.js 로컬 설정및 구글 로그인 설정"
 image: ../assets/img/uploads/passport.png
 tags: 
     - coding
@@ -203,7 +203,79 @@ router.delete('/logout',authMiddleware,  (req, res, next) => {
 });
 ```
 
+### 구글 OAuth 로그인
+### 구글로그인 사전 설정
+1. 구글로그인 oauth 신청
+[구글 developers](https://console.developers.google.com/apis )에 들어가 새프로젝트를 만들고  oauth를 신청한다 
+만들때 유저타입을 외부로 설정하고 지원이메일과 개발자 연락처 정보에 본인의 이메일을 입력한다 
+scpoe범위중 /auth/userinfo.email, /auth/userinfo.profile, oenid 를 설정해준다
 
-### 해야할것 
-이제 passport.js를 이해했으니 다시 코드 리팩토링 하러 가야겠다...
-근데 진짜 어렵기는 해
+사용자인증 정보에 승인된 자바스크립트원본에 자신의 사이트를 넣어준다 
+브라우저 요청에 사용된다고 써있는거 보면 자신의 백엔드 서버 주소를 넣으면 된다 
+근데 나는 혹시 몰라서 로컬호스트 백, 로컬호스트 프론트, 배포 사이트 2개가 넣어줬다 
+그 아래 승인된리디엑션도 그냥 백뒤에 /api/callback을 넣어서 올린다 
+
+이 후에 모달창으로 나오는 클라리언트 아이디와 보안 비밀번호를 복사해서 다른데 넣어준다
+
+### Passport 설정
+먼저 passport를 yarn add해준다 
+`yarn add passport-google-oauth20`
+
+1. 구글 로그인시(프론트에서 누를시 들어오는 라우터) 여기로 들어오게 된다 
+```javascript
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }), //? 그리고 passport 로그인 전략에 의해 googleStrategy로 가서 구글계정 정보와 DB를 비교해서 회원가입시키거나 로그인 처리하게 한다.
+  (req, res) => {
+    res.redirect('http://localhost:5000');
+  }
+);
+```
+위의 /auth/google로 들어가게 되면 바로 리다이렉트로 넘어가 '/auth/google/callback'으로 넘어간다 
+전의 로컬과 같이 authenticate에서 passport.use로 돌아간다 
+여기는 전략이 google이여서 passport.use중 전략이 google인데로 들어간다 
+app.js에 들어있는 passport설정파일로 들어간다
+```javascript
+function generateRandomPassword() {
+  return crypto.randomBytes(16).toString('hex');
+}
+
+passport.use(
+    new GoogleStrategy(
+      {
+        clientID: process.env.GOOGLE_ID, // 구글 로그인에서 발급받은 REST API 키
+        clientSecret: process.env.GOOGLE_SECRET,
+        callbackURL: 'http://localhost:3000/api/auth/google/callback', // 구글 로그인 Redirect URI 경로
+      },
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          const exUser = await prisma.User.findFirst({
+            where: { email: profile.emails[0].value, provider: 'google' },
+          });
+          if (exUser) {
+            done(null, exUser);
+          } else {
+            const newUser = await prisma.User.create({
+              data: {
+                email: profile.emails[0].value,
+                password: generateRandomPassword(), // 가상의 비밀번호 할당
+                nickname: profile.displayName,
+                provider: 'google', // 사용자가 Google을 통해 인증되었음을 나타내는 필드 추가
+                isVerified: true,
+              },
+            });
+            done(null, newUser);
+          }
+        } catch (error) {
+          console.error(error);
+          done(error);
+        }
+      }
+    )
+  );
+```
+
+여기보면 사실 email만 가져오는 거고 로그인시 비밀번호가 따로 필요 없어서 처음에 안넣었는데 오류가 나서 비밀번호를 그냥 난수값을 사용하는걸로 바꿨다 
+그리고 모르겠는데 이메일 바꾸는게 안된다고 하더라
+여기서 다시 google/callback으로 넘어가 실패시는 /login으로 넘어가고 성공시는 리다이렉트해준다
