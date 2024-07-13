@@ -5,7 +5,7 @@ show_date: true
 title: "컨테이너 가상화 이해 "
 date: 2024-07-10 15:00:20 -0600
 description: "DevOps초격차 패키지 Online 파트1"
-image: https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
+image: ../assets/img/uploads/docker.png
 tags: 
     - coding
     - diary

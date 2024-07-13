@@ -33,10 +33,15 @@ wget https://downloads.apache.org/kafka/3.7.0/kafka_2.13-3.7.0.tgz
 tar xvf kafka_2.13-3.7.0.tgz
 ```
 wegt는 웹서버에서 파일을 다운로드 하기 위해 커맨드 라인에서 사용하는 도구 
+
 이걸 사용해 웹에서 카프카를 다운 받는다 
+
 그후 tar 명령어를 사용해 압축을 해제 한다 
-x: dkqcnrgowp ahem 
+
+x: 압축을 해제함
+
 v: 자세한 출력으로 설정해 처리중인 파일 목록 표시 
+
 f: 이 다음 파일 지정을 나타냄
 
 ### JDK설치
@@ -48,8 +53,11 @@ sudo amazon-linux-extras install java-openjdk11
 
 ### 주키퍼 설정
 그동안은 카프카와 따로 주키퍼를 설정했지만 카프카에서 주키퍼에 대한 의존성을 줄이기 위해 카프카안에 설치가 되어있다 
+
 그래서 카프카의 설정파일을 담아놓은 폴더인 config안에 주키퍼 설정파일, 카프카 설정 파일이 둘다 있다 
+
 이 파일들을 수정해 카프카와 주키퍼 설정을 해준다 
+
 - 주키퍼 설정
 vi ~/kafka/config/zookeeper.properties
 ```shell
@@ -64,8 +72,11 @@ server.3=x.x.x.201:2888:3888
 서버2였으면 서버2가 0.0.0.0
 ```
 안의 dataDir가 나중에 주키퍼 아이디를 넣어줘야 하는곳
+
 설정되어 있는곳에 나중에 넣던지 그냥 여기에서 임의로 지정하고 거기에 넣던지 
+
 initTime: 팔로워가 리더와 초기에 연결하는 시간에 대한 타임아웃
+
 syncLimit: 팔로워가 리더와 동기화하는 시간에 대한 타임아웃
 
 ### 주키퍼 아이디 설정 
@@ -79,11 +90,13 @@ mkdir ~/kafka/zookeeper
 ```
 ### 주키퍼 서버 구동
 카프카를 설정하기 보다 먼저 주키퍼를 구동해야 한다 
+
 ```shell
 cd kafka
 bin/zookeeper-server-start.sh -daemon ./config/zookeeper.properties
 ```
 이 후 제대로 됐는지 확인하기 위해서는 이 명령어를 입력한다 
+
 ```shell
 bin/zookeeper-shell.sh x.x.x.x:2181
 ```
