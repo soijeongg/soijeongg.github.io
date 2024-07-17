@@ -78,10 +78,14 @@ export const dataSourceOptions: TypeOrmModuleAsyncOptions = {
 ```
 **만약 모듈의 생성시점에 ConfigModule를 사용해 환경변수를 써야한다면**
 nest에서 제공하는 config패키지는 nest에서 dotenv를 활용할수 있게 해준다.
+
 ConfigModule를 직접 만들어도 되고 이렇게 기존의 것을 사용해도 된다.
+
 ConfigModule은 정적이기 떄문에 모듈의 생성지점에서는 환경변수만을 로드 할 수 있다.
+
 하지만 useFactory를 사용해 동적인 값을 받아 올 수 있고 모듈을 만들때 굳이 env를 안쓰더라도 동적으로 생성해 사용할 수 있다.
 
 - ConfigService와 ConfigModule의 차이
 ConfigModule은 환경 변수와 설정을 로드하고 관리하는 모듈입, .env파일을 읽는다.
+
 ConfigService는 ConfigModule에서 로드한 환경변수와 설정값을 사용할수 있게 한다.
