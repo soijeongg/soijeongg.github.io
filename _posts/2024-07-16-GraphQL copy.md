@@ -5,7 +5,7 @@ show_date: true
 title: "GraphQL개념및 express와 적용해 serverless 개발(1)"
 date: 2024-07-10 15:00:20 -0600
 description: "GraphQL개념및 express와 적용해 serverless 개발(1) -GraphQL 개념"
-image: https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
+image: https://graphql-kr.github.io/img/og_image.png
 tags: 
     - coding
     - diary
