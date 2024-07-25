@@ -5,7 +5,7 @@ show_date: true
 title: "nest.js api 구성하기"
 date: 2024-07-10 15:00:20 -0600
 description: "커스텀 데코레이터,예외처리, 로깅"
-image: https://velog.velcdn.com/images/hyeokjinon/post/f4e58465-ee34-406d-8400-09b5bbd7441b/image.png
+image: https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
 tags: 
     - coding
     - diary
