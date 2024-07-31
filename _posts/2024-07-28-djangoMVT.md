@@ -2,9 +2,9 @@
 layout: post
 read_time: true
 show_date: true
-title: "django project 시작"
+title: "django project MVT"
 date: 2024-07-28 15:00:20 -0600
-description: "프로젝트 시작"
+description: "django의 mvt 구조와 MVC와의 차이"
 image: https://images.velog.io/images/dldhk97/post/35a88d4c-ef9f-4d8e-a361-c6d53e4e2162/django-logo-negative.png
 tags: 
     - coding
