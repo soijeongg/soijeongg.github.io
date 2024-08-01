@@ -23,7 +23,7 @@ toc: no
 - 정적파일을 사용하도록 만들기 
 진자처럼 html 파일 맨위에 템플릿 언어 사용하기
 ``` html
-\{% load static %}
+{% raw %}&lbrace;% load static %&rbrace;{% endraw %}
 
 ```
  
