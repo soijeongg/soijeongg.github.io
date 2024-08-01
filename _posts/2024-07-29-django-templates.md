@@ -21,7 +21,7 @@ toc: no
 장고는 이러한 정적파일을 static 디렉토리를 만들고 안에 app이름으로 된 정적폴더를 만든후 그곳에 정적 파일을 넣는다 
 
 - 정적파일을 사용하도록 만들기 
-진자처럼 html 파일 맨위에 {% load static %} 쓰기 
+진자처럼 html 파일 맨위에 {% raw %}{% load static %}{% endraw %} 쓰기 
 또한 파일의 경로를 템플릿 랭귀지를 사용해 {%static 'appname/css/appname} 이렇게 바꿔준다 
 
 - 디렉토리 구조
