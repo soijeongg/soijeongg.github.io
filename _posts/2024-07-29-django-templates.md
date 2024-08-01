@@ -22,8 +22,9 @@ toc: no
 
 - 정적파일을 사용하도록 만들기 
 진자처럼 html 파일 맨위에 템플릿 언어 사용하기
-```html
-{% load static %}
+``` html
+\{% load static %}
+
 ```
  
 또한 파일의 경로를 템플릿 랭귀지를 사용해 \{%static 'appname/css/appname' %}\ 이렇게 바꿔준다 
