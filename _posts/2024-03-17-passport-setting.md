@@ -221,7 +221,8 @@ scpoe범위중 /auth/userinfo.email, /auth/userinfo.profile, oenid 를 설정해
 먼저 passport를 yarn add해준다. 
 `yarn add passport-google-oauth20`
 
-1. 구글 로그인시(프론트에서 누를시 들어오는 라우터) 여기로 들어오게 된다 .
+1. 구글 로그인시(프론트에서 누를시 들어오는 라우터) 여기로 들어오게 된다.
+
 ```javascript
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get(
@@ -236,6 +237,7 @@ router.get(
 전의 로컬과 같이 authenticate에서 passport.use로 돌아간다. 
 여기는 전략이 google이여서 passport.use중 전략이 google인데로 들어간다. 
 app.js에 들어있는 passport설정파일로 들어간다.
+
 ```javascript
 function generateRandomPassword() {
   return crypto.randomBytes(16).toString('hex');
