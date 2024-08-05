@@ -174,12 +174,16 @@ gpt에 물어보니 프로메테우스가 모니터링 해야할것
 
 이중 어차피 node expoter로 넘어갈꺼서 기본적인걸 메트릭 수집히기로 했다 
 
+node expoter 사용 -> <https://soijeongg.github.io/monitoring/>
+
+node expoter가 수집하는 메트릭 -> <https://soijeongg.github.io/node-expoter/>
 ### 코드 정리
 1. 노드별 메모리 사용률
 2. 시스템 CPU 사용률 
 3. 시스템 디스크 사용량 
 4. HTTP 요청 총수
 5. HTTP 요청 처리 시간
+
 ```javascript
 import { Gauge } from "prom-client";
 import os from "os";
@@ -278,6 +282,7 @@ export {
 };
 ``` 
 이렇게 설정 파일을 사용하고  app.js에 연동한다 
+
 ```javascript
 const httpRequestCounter = new Counter({
   name: 'http_requests_total',
@@ -356,7 +361,7 @@ app.js에 연동한다
 
 근래서 찾아보다 대시보드에서 적용할 수 있는 방법을 찾았다 
 
-https://www.inflearn.com/questions/267420/%EB%8C%80%EC%89%AC%EB%B3%B4%EB%93%9C%EC%97%90-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EB%AA%BB%EA%B0%80%EC%A0%B8%EC%98%A4%EB%8A%94%EA%B2%83-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4
+<https://www.inflearn.com/questions/267420/%EB%8C%80%EC%89%AC%EB%B3%B4%EB%93%9C%EC%97%90-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EB%AA%BB%EA%B0%80%EC%A0%B8%EC%98%A4%EB%8A%94%EA%B2%83-%EA%B0%99%EC%8A%B5%EB%8B%88%EB%8B%A4>
 이 사이트가 인프런에서 나온건데 여기 보니까 쿼리가 있더라
 
 그래서 이 쿼리를 찾기 위해 설정파일을 찾고 있었는데 데이터소스 프로메테우스 explore거 있더라 여기 들어가서 쿼리가 처음에는 빌더인데 코드로 바꾸니까 나오더라 
