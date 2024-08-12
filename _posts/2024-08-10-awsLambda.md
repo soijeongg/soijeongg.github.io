@@ -2,9 +2,9 @@
 layout: post
 read_time: true
 show_date: true
-title: "aws lambda 기초 "
+title: "aws lambda 기초 및 aws SAM 이용 함수 생성 "
 date: 2024-08-10 15:00:20 -0600
-description: "aws lambda 이용 서버리스 구축"
+description: "aws SAM, prisma, 이용 서버리스 아키텍쳐 구축"
 image: https://cdn.worldvectorlogo.com/logos/aws-lambda-1.svg
 tags: 
     - coding
