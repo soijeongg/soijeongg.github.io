@@ -5,7 +5,7 @@ show_date: true
 title: "aws lambda 기초 "
 date: 2024-08-10 15:00:20 -0600
 description: "aws lambda 이용 서버리스 구축"
-image: https://blog.kakaocdn.net/dn/dpwvVE/btrBqolp4WG/xU2kPsR8hJ0Rpx9B1LSoZ1/img.png
+image: https://cdn.worldvectorlogo.com/logos/aws-lambda-1.svg
 tags: 
     - coding
     - diary
