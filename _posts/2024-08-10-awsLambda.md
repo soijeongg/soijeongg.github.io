@@ -242,6 +242,7 @@ SAM configuration environment [default]: default
  게이트 웨이의 엔드포인트에 들어가면 제대로 값이 나온다
 
  ### 참고블로그
+ 
  <https://medium.com/@lifthus531/aws-sam%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%84%9C%EB%B2%84%EB%A6%AC%EC%8A%A4-%EC%9B%B9-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%9D%98-%EA%B5%AC%ED%98%84-1-4fa3e44c99f8>
 
 <https://medium.com/@lifthus531/aws-sam%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%84%9C%EB%B2%84%EB%A6%AC%EC%8A%A4-%EC%9B%B9-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%9D%98-%EA%B5%AC%ED%98%84-2-5874bab4badd>
