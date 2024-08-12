@@ -3,7 +3,7 @@ layout: post
 read_time: true
 show_date: true
 title: "리액트 시작과 기초"
-date: 2024-07-30 15:00:20 -0600
+date: 2024-08-04 15:00:20 -0600
 description: "jsx, 프로그래먼트, 컴포넌트, props, state"
 image: https://blog.kakaocdn.net/dn/dpwvVE/btrBqolp4WG/xU2kPsR8hJ0Rpx9B1LSoZ1/img.png
 tags: 
