@@ -52,6 +52,7 @@ class MovieSerializer(serializers.Serializer):
 
 - 모델과 뷰를 연결
  api_view를 사용해 http method가 뭐가 들어오는지 결정한다 
+
  ```python
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -73,6 +74,7 @@ def movie_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 ```
+
 그동안 템플릿을 보여주기 위해 썻던 render가 아니라 api_view, Response를 사용한다 
 
 @api_view는 데코레이터 함수로 기존 함수를 수정하지 않고 추가 로직을 넣고 싶을떄 사용한다 
@@ -117,6 +119,7 @@ class MovieSerializer(serializers.Serializer):
 
 데이터를 수정하기 위해 시리얼라이저에 update 함수를 정의한다 
 수정할 데이터인 instance와 검증된 데이터인 validated_data를 받고 수정하려는 객체인 instance에 validated_data를 넣으면 데이터가 수정된다 
+
 ```python
 def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
@@ -126,10 +129,12 @@ def update(self, instance, validated_data):
         instance.save()
         return instance
 ```
+
 get은 딕셔너리에 키에 맞는 값이 존재하면 데이터를 반환한다 
-값이 존재함다면 수정 요청한 값이 없다면 기존의 필드값을 넣고 없다면 기존 필드 값인 instance.name을 넣고 수정한다 
+값이 존재한다면 수정 요청한 값이 없다면 기존의 필드값을 넣고 없다면 기존 필드 값인 instance.name을 넣고 수정한다 
 
 뷰에 들어가 함수를 만든다
+
 ```python
 @api_view(['GET', 'PUT', 'DELETE'])
 def movie_detail(request, pk):
@@ -144,6 +149,7 @@ def movie_detail(request, pk):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 ```
+
 - **시리얼라이저에서 create, update 함수를 만드는데 어디서 사용하는걸까?**
 이게 계속 이해가 안되서 찾아봤었다 뷰의 함수를 보면 결국은 .save를 통해 업데이트와 create를 둘다 한다고 하는데 어떻게 하는걸까? 어디서 create와 update를 쓰는걸까??
 
@@ -212,6 +218,7 @@ extra_kwargs: 다양한 필드에 여러 옵션을 추가해야하는 경우 사
 ### validators
 시리얼라이저의 모든 필드에는 validators 옵션을 적용해 검사를 할 수 있다
 시리얼라이저에 적용할 수도 있고 직접 검사 함수를 커스텀헤서 사용할 수도 있다 
+
 ```python
 
 from django.core.validators import MaxLengthValidator, MinLengthValidator
@@ -231,6 +238,7 @@ UniqueValidator와 UniqueTogetherValidator를 사용해 유일성을 확인할 �
 
 - validate_[필드명]()
 하나의 필드에서만 유효성 검사를 진행할려면 validate_[필드명]() 함수를 사용할 수 읶다 안에서 is_valid()함수가 실행될때 자동으로 실행되며 안에서 만든 로직에따라 검사를 수행하고 통과하지 못하면 에러를 반환한다 
+
 ```python
 # ...
 from rest_framework.serializers import ValidationError
@@ -247,6 +255,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
 ### 관계맺기 
 모델의 ForeignKey필드를 사용해 특정모델을 참조할 수 있다 
+
 ```python
 class Review(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
@@ -264,6 +273,7 @@ class Review(models.Model):
 원모델에서 관계설정해 처리할 수 있다 이 경우 데이터를 더 쉽게 관리할 수 있다 
 1. ManyToManyField
 다대다 관계를 정의한다 
+
 ```python
 class Movie(models.Model):
     name = models.CharField(max_length=255)
@@ -284,6 +294,7 @@ class Actor(models.Model):
 
 2. OneToOneField
 일대일관계 
+
 ```python
 class Movie(models.Model):
     name = models.CharField(max_length=255)
