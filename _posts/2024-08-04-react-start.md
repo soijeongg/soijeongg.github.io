@@ -21,6 +21,7 @@ webpack: 오픈 소스 자바스크립트 모듈로 여러개 나눠져 있는 �
 
 babel: 최신 자바스크립트문법을 지원하지 않는 브라우저에 최신 문법을 구형브라우저에서도 사용할 수 있게 변환 시키는 라이브러리
 리액트를 시작하기 위해 create react app방식을 사용한다 
+
 ```
  npm init react-app
  npm install -g create-react-app
@@ -47,6 +48,7 @@ Angular와 Vue는 프레임워크이며 리액트는 라이브러리
 
 ### 리액트의 기본적인 구조 
 npx create react app 사용시 구조
+
 ```
 my-app/
   README.md

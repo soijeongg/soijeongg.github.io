@@ -19,6 +19,7 @@ toc: no # leave empty or erase for no TOC
 사용자가 브라우저 주소를 입력해 요청하면 django는 urls.py 파일에 적혀있는 것을보고 어떤 처리를 할지 결정한다 
 
 url 파일의 url pattern이 어떻게 처리할지 결정하는 곳
+
 ```python
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +33,7 @@ urlpatterns = [
 
 ### url 만들기 
 이 기본 url을 활용할 수 있다 
+
 ```python
 from django.contrib import admin
 from django.urls import path, include
@@ -81,6 +83,7 @@ sesstings.py에 ROOT_URLCONF에 장고가 url을 보고 가장 먼저 어떤 파
 
 - include는 이 폴더 안을 살펴보라는 뜻 
 바로 쓰고 싶으면 프로젝트 디렉토리에 view 폴더를 만들고 안에 함수를 정의한다 
+
 ```python
  from . import views
  urlpatterns = [
@@ -129,6 +132,7 @@ django에서는 url 앞에 /를 넣지 않아야 한다
 각 앱에 templates폴더를 만들고 안에 각 app의 이름의 디렉토리를 만든다 
 
 지금은 html로 하지만 나중에는 react로 바꿀 계획이다 
+
 ```python
 def index(request):
     return render(request, 'foods/index.html')

@@ -21,6 +21,7 @@ toc: no
 
 클래스 형뷰를 사용하기 위해서는 APIView를 import해 사용한다 
 APIView를 상속받은 클래스를 만들고 안에 get, post의 함수를 생성해 method에 따른 로직을 지정해준다 
+
 ```python
 class MovieList(APIView):
     def get(self, request):
@@ -48,6 +49,7 @@ class MovieList(APIView):
         movie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 ```
+
 이 클래스를 url에 연결할려면 .as_view()를 사용해 연결해야한다 
 ```python
 urlpatterns = [
@@ -72,6 +74,7 @@ crud를 포함한 요청 처리를 단순하고 효율적으로 구현할 수 �
 9. RetrieveUpdateDestroyAPIView: 특정 객체의 세부 정보를 반환 OR 업데이트 OR 삭제(GET PUT PATCH DELETE)
 
 - get& create
+
 ```python 
 from rest_framework.generics import ListCreateAPIView
 class MovieList(ListCreateAPIView):
@@ -82,6 +85,7 @@ class MovieList(ListCreateAPIView):
 
 기존의 제너릭 뷰는 쿼리셋을 지정해야 하지만 이번에는 원모델의 값을 가져와 필터해야하기때문에 바로 지정이 불가능하다 
 get_queryset() 함수를 사용해 지정해야한다 
+
 ```python
 class ReviewList(ListCreateAPIView):
     serializer_class = ReviewSerializer
@@ -99,6 +103,7 @@ class ReviewList(ListCreateAPIView):
 
 - update & delete
 RetrieveUpdateDestroyAPIView를 사용한다  특정한 데이터를 조회, 수정, 삭제할 수 있다 
+
 ```python
 class MovieDetail(RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
@@ -119,6 +124,7 @@ lookup_url_kwarg: URL로부터 받아오는 변수명을 지정
 
 - 전역페이지네이션 설정
 setting파일에 REST_FRAMEWORK변수를 만들고 안에 페이지네이션관련 내용을 작성한다 
+
 ```python
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', #페이지네이션을 사용하겠다 
@@ -126,6 +132,7 @@ REST_FRAMEWORK = {
 }
 ```
 이후 요청을 보내면 기존과 달리 결과물이 3개씩 나오게 되고 cout라는 키를 통해 실제 존재하는 데이터의 개수, next라는 키를 통해 다음 데이터의 url(없을경우 null), previous이라는 키를 통해 이전 데이터의 url을 알려준다 
+
 ```json
 {
     "count": 100,
@@ -160,6 +167,7 @@ REST_FRAMEWORK = {
 특정한 뷰에 페이지네이션을 별도로 설정할 수 있다 
 
 먼저 PageNumberPagination를 상속받은 클래스를 생성하고 원하는 데이터 처리 개수를 설정한다 
+
 ```python
 from rest_framework.pagination import PageNumberPagination
 class MoviePageNumberPagination(PageNumberPagination):
@@ -170,6 +178,7 @@ class MovieList(ListCreateAPIView):
     serializer_class = MovieSerializer
     pagination_class = MoviePageNumberPagination
 ```
+
 만든 제너릭 뷰에   pagination_class 옵션을줘 적용한다 
 
 ### CORS
@@ -178,6 +187,7 @@ Cross-Origin Resource Sharing의 약자로 교차출처 리소스로 url의 프�
 cors는 출처가 다른 자원들을 공유한다는 뜻으로 서로 다른 출체어있는 자원에 접근할 수 있게 하는 개념이다 라지만 다른 출처에서 가져오는 것은 보안상의 문제가 있기 때문에 막아놨다 
 
 이걸 해결하기 위해서는 서버에서 cors를 처리할 주소를 설정해놔야 한다 
+
 ```shell
 pip install django-cors-headers
 ``` 

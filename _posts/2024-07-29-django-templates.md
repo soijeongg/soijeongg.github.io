@@ -74,6 +74,7 @@ raise를 사용해 파이썬에서 에러를 강제로 만들 수 있다
 데이터베이스 설계를 먼저 한다 (이 부분은 개논물 모델링 하면 될거 같음)
 class로 모델을 상속받아 구현해야 한다
 각각의 데이터에 대한 형식을 필드를 사용한다 (charfiled, )
+
 ```python
 from django.db import models
 
@@ -127,12 +128,14 @@ python manage.py makemigrations
 
 2. migrate
 최신버전의 마이그레이션을데이터베이스에 반영하는 명령으로 전 마이그레이션으로 되돌리고 싶으면 
+
 ```shell
 python manage.py migrate {appname} {되돌릴 번호}
 ```
 
 3. showmigrations
 모든 마이그레이션의 반영상태를 나타낸다 
+
 ```
 python manage.py showmigrations
 
@@ -140,6 +143,7 @@ python manage.py showmigrations
 
 4. sqlmigrate
 인수로 넘겨준 마이그레이션이 orm을 통해 변경된 sql문을 출력한다 
+
 ```shell
 python manage.py sqlmigrate {앱 이름} {마이그레이션}
 ```

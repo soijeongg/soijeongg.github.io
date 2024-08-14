@@ -63,6 +63,7 @@ aws 콘솔에 들어가 IAM 사용자를 만든 후 사용자에게 aws lambda_F
 그 후 엑세스 키를 만들고 엑세스 키와 비밀키를 저장한다
 
 - sam 설치
+
 ```
 brew tap aws/tap
 brew install aws-sam-cli
@@ -83,6 +84,7 @@ Default output format [None]: json
 그후 sam init 명령어를 통해 시작한다 
 
 ### sam init 명령어
+
 ```
 Which template source would you like to use?
         1 - AWS Quick Start Templates
@@ -122,6 +124,7 @@ generator client {
 }
 ```
 - 람다 함수 코드
+
 ``` javascript
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
@@ -158,6 +161,7 @@ Outputs: 템플릿의 출력 값을 정의
 이곳에 resource를 내 코드에 맞게 고친다
 
 ### resource
+
 ```yaml
 Resources:
   greetingserviceFunction:  #함수 이름 정의  -> 아래 아웃풋도 이걸로 바꿔야 함
@@ -216,6 +220,7 @@ Outputs:
 sam deploy --guided 명령어를 사용해 배포를 하는데 처음에만 가이드를 뒤에 붙이고 그 다음부터는 그냥 sam deploy 명령어를 쓰면 된다 
 
 명령어를 입력하면 설정을 입력해야 한다 
+
 ```
 Stack Name [my-sam]: my-sam
 AWS Region [us-east-1]: ap-northeast-2

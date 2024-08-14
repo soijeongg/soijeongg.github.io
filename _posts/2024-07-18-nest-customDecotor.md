@@ -37,6 +37,7 @@ nest.js의 데코레이터는 크게 클래스, 메서드, 매개변수, 속성�
 간단하게 만들어볼 수 있는 요청이 들어오는 클라이언트의 아이피를 트래킹하는 매개변수 데토레이터를 만들기
 소스폴더에 가서 데토레이터 폴더 안에 만들기
 **매개번수 데토레이터를 만들때는 createParamDecorator를 사용해 만든다 
+
 ```typeScript
 import { ExecutionContext, createParamDecorator } from "@nestjs/common";
 
@@ -56,6 +57,7 @@ export const Ip = createParamDecorator(( data:unknown, ctx: ExecutionContext):st
 
 throw new HttpException로 에러 발생 가능
 입세션 필터 사용시 전역적으로 사용하거나 해당 클래스에서만 사용하는 것도 가능
+
 ```typescript
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from "@nestjs/common";
 import { Request, Response } from "express";

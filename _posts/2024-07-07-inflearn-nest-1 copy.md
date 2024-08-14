@@ -24,6 +24,7 @@ ailed to execute command: yarn install --silent
 npm cache clean --force
 
 그래도 계속 나와서 다음에 찾아보니 nest가 root 사용자로 실행되고 있으면 그런다고 해서 사용자 권한을 줬었다.
+
 ```shell
 sudo chown -R $USER:$GROUP ~/.npm
 sudo chown -R $USER:$GROUP ~/.config
@@ -32,6 +33,7 @@ sudo chown -R $USER:$GROUP ~/.config
 ![](../assets/img/uploads/nodeV.png)
 이렇게 있는 버전이 찾아보니까 lts도 아니고 최신도 아니더라 뭐지..? 
 암튼 lts를 깔기로 했다. 
+
 ```shell
 sudo npm install -g n
 n stable //안정버전

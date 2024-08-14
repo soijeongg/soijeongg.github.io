@@ -18,6 +18,7 @@ toc: no # leave empty or erase for no TOC
 
 ### 기존 방법
 기존의 바닐라 타입스크립트에서는 모듈이 없기 때문에 직접 DataSource를 import해 설정해야했었다.
+
 ```typeScript
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -50,6 +51,7 @@ export const AppDataSource = new DataSource({
 ### nest.js에서의 변화
 nest.js에서는 모듈이 추가되어 이 모듈에 데이터베이스 연결정보를 넣으면 된다. 
 datasource파일을 만들어 뺴서 정리한다.
+
 ```typeScript
 import { TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -76,6 +78,7 @@ export const dataSourceOptions: TypeOrmModuleAsyncOptions = {
   inject: [ConfigService], //환경변수에서 설정값 가져옴
 };
 ```
+
 **만약 모듈의 생성시점에 ConfigModule를 사용해 환경변수를 써야한다면**
 nest에서 제공하는 config패키지는 nest에서 dotenv를 활용할수 있게 해준다.
 

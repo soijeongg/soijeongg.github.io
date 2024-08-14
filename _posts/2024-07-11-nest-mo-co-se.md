@@ -17,6 +17,7 @@ toc: no # leave empty or erase for no TOC
 ### 모듈
 nest.js는 모듈 기반 아키텍쳐로 구성되어 있다 
 모듈은 모듈 데코레이터로 어노테이션
+
 ``` typescript
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -29,6 +30,7 @@ import { AppService } from './app.service';
 })
 export class AppModule {}
 ```
+
 imports: 모듈이 정의하는 컨트롤러의 배열, 클라이언트의 요청을 처리하고 적절한 응답반환, 
          다른 모듈을 불러오고 설정하는 역할을 한다 
          또한 ORM연결 정의를 한다 
@@ -41,6 +43,7 @@ provider: 사용할 종속성들이 들어간다
 ### 컨트롤러 
 컨트롤러는 사용자의 요청을 받고 요청에 따라 서비스에 넘겨주고 마지막에 나온 return 값을 반환한다 
 controller 어노테이션을 사용해 알려주고 생성자를 통해 서비스객체를 주입받는다 
+
 ``` typeScript
 import { Controller, Body, Param, Get, Post, Put, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
@@ -54,6 +57,7 @@ export class UserController {
   }
 }
 ```
+
 지금보면 생성자로 유저서비스객체를 받아 사용하고 있다 
 
 ### 서비스 
@@ -78,6 +82,7 @@ export class UserService {
   }
 }
 ```
+
 Injectable로 주입받고 생성자를 사용해 이 객체가 호출되었을때 엔티티를 이용해 레포지토리를 만든다 
 그 후 crud를 진행한다(save, find, update, delete)
 
