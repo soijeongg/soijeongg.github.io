@@ -131,6 +131,7 @@ const updateMemoryUsageMetric = () => {
 export { memoryUsageMetric, updateMemoryUsageMetric };
 ```
 이렇게 prom-client 설정 파일을 따로 빼서 사용한다 
+
 ```javascript
 //app.js
 import { updateMemoryUsageMetric, memoryUsageMetric } from '../../metrics.js';

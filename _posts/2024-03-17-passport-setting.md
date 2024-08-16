@@ -85,6 +85,7 @@ req.login 메서드가 passport.serializeUser() 호출.
 
 ```
 라우터에서 로그인시 적용한 함수가 호출된다. ( passport.authenticate)
+
 ```javascript
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', async (err, user, info) => {
@@ -139,6 +140,7 @@ passport.use("local", new LocalStrategy({
 이후 다시 로그인 부분의 req.login으로 넘어간다 들어온 user의 값이 없으면 에러가 발생해 req.login으로 안넘어가고 에러가 발생한다 
 req.login으로 넘어가 들어온 user의 값을 사용해 로그인을 한다 -> 성공시 세션에 저장을 한다 
 req.login 메서드가 passport.serializeUser() 호출한다 
+
 ```javascript
 // 사용자 정보를 세션에 저장
 passport.serializeUser((user, done) => {
@@ -167,6 +169,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 그리고 설정파일 import 해주기.
 로그인한것을 확인하는 미들웨어 구현.
+
 ``` javascript
 //로그인되었는지를 검사하는 인증 미들웨어
 export default function authMiddleware(req, res, next) {
@@ -203,8 +206,14 @@ router.delete('/logout',authMiddleware,  (req, res, next) => {
 });
 ```
 
-### 구글 OAuth 로그인
+### 구글 OAuth 
+
+- Oauth2란?
+인증을 위한 개방형 표준 프로토콜로 제 3자 애플리케이션이 사용자를 대신해 애플리케이션에서 제공하는 자원에 대한 접근 권한을 위임하는 방식을 제공
+
+구글, 네이버들에서 제공하는 간편 로그인 기능도 이 프로토콜 기반의 사용자 인증 기능을 제공
 ### 구글로그인 사전 설정
+
 1. 구글로그인 oauth 신청
 [구글 developers](https://console.developers.google.com/apis )에 들어가 새프로젝트를 만들고  oauth를 신청한다. 
 만들때 유저타입을 외부로 설정하고 지원이메일과 개발자 연락처 정보에 본인의 이메일을 입력한다. 
@@ -279,5 +288,96 @@ passport.use(
 ```
 
 여기보면 사실 email만 가져오는 거고 로그인시 비밀번호가 따로 필요 없어서 처음에 안넣었는데 오류가 나서 비밀번호를 그냥 난수값을 사용하는걸로 바꿨다. 
+
 그리고 모르겠는데 이메일 바꾸는게 안된다고 하더라.
 여기서 다시 google/callback으로 넘어가 실패시는 /login으로 넘어가고 성공시는 리다이렉트해준다.
+
+이와 동일한 방법으로 네이버와 카카오도 각각 개발자 사이트에서 키를 발급받고 각각에 맞는 passport를 add한 후 구현한다 
+
+```javascript
+assport.use(
+    new KakaoStrategy(
+      {
+        clientID: process.env.KAKAO_ID, // 구글 로그인에서 발급받은 REST API 키=
+        callbackURL: `${process.env.BACKEND_URL}/api/auth/kakao/callback`, // 구글 로그인 Redirect URI 경로
+      },
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          const email = profile._json.kakao_account.email;
+          const nickname = profile._json.properties.nickname;
+          const user = await prismaReplica.User.findFirst({
+            where: { email: email },
+          });
+
+          if (user) {
+            // 이메일이 이미 존재하는 경우
+            if (user.provider === 'kakao') {
+              // 동일한 제공자로부터 로그인 시도인 경우, 로그인 성공 처리
+              return done(null, user);
+            } else {
+              // 다른 제공자를 통한 계정이 이미 존재하는 경우, 에러 처리
+              return done(null, false, { message: '이 이메일은 이미 가입되어 있습니다 다른 메일을 이용하시거나 원래 사용하셨던 방식으로 로그인해주세요.' });
+            }
+          } else {
+            const user = await prisma.User.create({
+              data: {
+                email: email,
+                password: await generateRandomPassword(),
+                nickname: nickname,
+                provider: 'kakao',
+                isVerified: true
+              },
+            });
+          }
+        } catch (error) {
+          console.error(error);
+          done(error);
+        }
+      }
+    )
+  );
+  passport.use(
+    new NaverStrategy(
+      {
+        clientID: process.env.NAVER_ID, // 구글 로그인에서 발급받은 REST API 키
+        clientSecret: process.env.NAVER_SECRET,
+        callbackURL: `${process.env.BACKEND_URL}/api/auth/naver/callback`, // 구글 로그인 Redirect URI 경로
+      },
+      async ( profile, done) => {
+        try {
+          const user = await prismaReplica.User.findFirst({
+            where: { email: profile.email },
+          });
+
+          if (user) {
+            // 이메일이 이미 존재하는 경우
+            if (user.provider === 'naver') {
+              // 동일한 제공자로부터 로그인 시도인 경우, 로그인 성공 처리
+              return done(null, user);
+            } else {
+              // 다른 제공자를 통한 계정이 이미 존재하는 경우, 에러 처리
+              return done(null, false, { message: '이 이메일은 이미 가입되어 있습니다 다른 메일을 이용하시거나 원래 사용하셨던 방식으로 로그인해주세요.' });
+            }
+          } else {
+            const user = await prisma.User.create({
+              data: {
+                email: profile.email,
+                password: await generateRandomPassword(), // 가상의 비밀번호 할당
+                nickname: profile.name,
+                provider: 'naver', // 사용자가 네이버 통해 인증되었음을 나타내는 필드 추가
+                isVerified: true,
+                
+              },
+            });
+            return done(null, user);
+          }
+        } catch (error) {
+          console.error(error);
+          done(error);
+        }
+      }
+    )
+  );
+```
+
+**이메일이 unique이기 때문에 만약 겹치는게 있는지 먼저 확인하고 해야한다**
