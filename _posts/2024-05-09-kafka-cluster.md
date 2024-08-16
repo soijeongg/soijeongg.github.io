@@ -125,3 +125,131 @@ bin/kafka-server-start.sh -daemon ./config/server.properties
 
 ### 토픽 생성
 ![](../assets/img/uploads/ropli.png)
+
+
+### express와 연동
+
+kafkajs 설치: kafka와의 연동을 위해 설치 
+```bash
+yarn add kafkajs
+```
+Kafka 클라이언트를 설정하고 Kafka 브로커에 연결 후 Kafka 브로커의 호스트 및 포트 정보를 설정
+
+값을 보내는것이 **프로듀서** 값을 구독하고 받는것이 **컨슈머**
+
+```javascript
+import kafka from 'kafka-node'
+// Kafka 클라이언트를 생성합니다.
+const kafka = new Kafka({
+  clientId: "my-producer",
+  brokers: ["52.79.201.23:9092", "43.200.179.176:9092", "13.124.81.159:9092"],
+});
+
+```
+카프카1, 카프카2 이 부분이 카프카를 설치한 Ec2의 ip로 바꾸기
+
+1. 프로듀서 
+프로듀서는 데이터(메시지 또는 레코드)를 Kafka 토픽으로 전송하는 역할
+일반적으로 프로듀서는 실시간 이벤트, 로그, 메트릭 등 다양한 종류의 데이터를 생성하고 Kafka에 전달
+
+``` javascript
+import { Kafka } from "kafkajs"; // kafkajs 패키지에서 Kafka를 import합니다
+import express from "express";
+import bodyParser from "body-parser";
+const app = express();
+const port = 9999;
+// Kafka 클라이언트를 생성합니다.
+const kafka = new Kafka({
+  clientId: "my-producer",
+  brokers: ["52.79.201.23:9092", "43.200.179.176:9092", "13.124.81.159:9092"], //임시 아이피, 각 브로커의 아이피 적어야 함
+});
+app.use(bodyParser.json());
+// Producer 인스턴스를 생성합니다.
+const producer = kafka.producer();
+
+const initKafka = async () => {
+  await producer.connect();
+};
+app.post("/events", async (req, res) => {
+  //console.log(req.body);
+  await producer.send({
+    topic: "matchingQueue",
+    messages: [{ value: JSON.stringify(req.body) }],
+  });
+  res.send("successfully stored event : " + req.body + "\n");
+});
+app.get("/", async (req, res) => {
+  res.send("sss");
+});
+
+app.post("/result", async (req, res) => {
+  console.log("여기로 넘어온값은", req.body);
+  res.send(req.body);
+});
+app.listen(port, async () => {
+  console.log(`kafka app listening on port ${port}`);
+});
+
+initKafka();
+```
+먼저 req.body로 들어오는 값을 제대로 받기 위해 body-parser을 설치한다 
+
+app.use로 설정을하고 카프카 연결을 설정한다 
+
+그 후 event로 포스트 요청이 올때 프로듀서인스턴스로 req.body를 json타입으로 보낸다 
+
+result로 오는 값을 콘솔을 찍어본다 
+
+- 컨슈머
+컨슈머는 Kafka 토픽에서 데이터를 소비하고 처리하는 역할
+
+주로 컨슈머는 프로듀서가 전송한 데이터를 읽어들여 비즈니스 로직에 따라 처리하거나 저장
+
+컨슈머는 특정 토픽에 대한 구독을 생성하고, 해당 토픽의 파티션으로부터 메시지를 가져와서 처리
+
+```javascript
+import { Kafka } from "kafkajs"; // kafkajs 패키지에서 Kafka를 import합니다
+import axios from "axios";
+
+// Kafka 클라이언트를 생성합니다.
+const kafka = new Kafka({
+  clientId: "my-producer",
+  brokers: ["52.79.201.23:9092", "43.200.179.176:9092", "13.124.81.159:9092"],
+});
+const consumer = kafka.consumer({ groupId: "test-group" });
+
+const initKafka = async () => {
+  console.log("start subscribe");
+  await consumer.connect();
+  await consumer.subscribe({ topic: "matchingQueue", fromBeginning: false });
+  await consumer.run({
+    eachMessage: async ({ topic, partition, message }) => {
+      console.log({
+        value: message.value.toString(),
+      });
+      await axios.post("http://localhost:9999/result", {
+        message: message.value.toString(),
+      });
+      console.log("Message forwarded successfully.");
+    },
+  });
+};
+
+initKafka();
+```
+여기도 카프카 연결울 설정한다 
+
+연결이 된후 토픽을 먼저 설정해놓은 matchingQueue로 입력하고 fromBeginning을 false로 선언한다 
+
+fromBeginning은 Kafka 컨슈머가 특정 토픽을 구독할 때 처음부터 모든 메시지를 읽을지 여부를 지정하는 옵션
+
+true로 설정하면 컨슈머가 토픽의 처음부터 모든 메시지를 읽고 false면 가장 최근꺼만 읽는다 
+
+그후 컨슈머를 만들고 컨슈머가 카프카 토픽을 구독한다 
+
+consumer.run는 컨슈머가 메세지를 처리하는 메서드이고  eachMessage는 카프카 컨슈머가 메시지를 소비할때 호출하는 함수이다 
+
+여기서 들어오는 메세지를 콘솔로 찍고 post 로 다른 라우터로 값을 보낸다 
+
+실제로 위에서 만든 result로값이 들어와 console.log에 찍힌다 
+
