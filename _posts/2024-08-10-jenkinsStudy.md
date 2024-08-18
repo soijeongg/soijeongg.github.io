@@ -5,7 +5,7 @@ show_date: true
 title: "jenkins 사용 배포 자동화 "
 date: 2024-08-12 15:00:20 -0600
 description: "깃허브+젠킨스+ec2로의 배포 자동화"
-image:s: https://velog.velcdn.com/images/hyeokjinon/post/f4e58465-ee34-406d-8400-09b5bbd7441b/image.png
+image:s: https://logowik.com/content/uploads/images/jenkins8460.jpg
 tags: 
     - coding
     - diary
