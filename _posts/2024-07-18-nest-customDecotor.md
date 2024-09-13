@@ -2,7 +2,7 @@
 layout: post
 read_time: true
 show_date: true
-title: "nest.js api 구성하기"
+title: "nest.js 커스텀 데코레이터 "
 date: 2024-07-10 15:00:20 -0600
 description: "커스텀 데코레이터,예외처리, 로깅"
 image: https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
