@@ -2,7 +2,7 @@
 layout: post
 read_time: true
 show_date: true
-title: " ailed to execute command: yarn install --silent 에러 해결"
+title: " Failed to execute command: yarn install --silent 에러 해결"
 date: 2024-07-07 15:00:20 -0600
 description: " ailed to execute command: yarn install --silent 에러 해결"
 image: https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
@@ -15,7 +15,7 @@ author: soi
 toc: no # leave empty or erase for no TOC
 ---
 nest를 시작할려고 nest new project를 할려고 했는데 계속 이에러가 났다. 
-ailed to execute command: yarn install --silent
+Failed to execute command: yarn install --silent
 ✖ Installation in progress... ☕
 🙀  Packages installation failed! 에러가 계속 나와서 
 ![](https://i.sstatic.net/VCrgI.png)
