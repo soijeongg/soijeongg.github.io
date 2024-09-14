@@ -2,10 +2,9 @@
 layout: post
 read_time: true
 show_date: true
-title: "typeOR 마이그레이션
-"
+title: "typeORM 마이그레이션 적용하기"
 date: 2024-07-02 15:01:20 -0600
-description: "typeORM연결방법 및 레이어드 패턴에 IRequest와 DTO" 
+description: " yarn +typeORM 마이그레이션" 
 image: https://i.pinimg.com/564x/cc/97/49/cc97499cc69c7ca091bae1238e7c5d59.jpg
 tags: 
     - coding
@@ -32,11 +31,14 @@ migrations: ['src/database/migrations/**/*.ts'],
   subscribers: [],
 
 3.package.json에서 스크립트를 작성
+
+```json
  "typeorm" : "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --dataSource src/dataSource.ts",
     "migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create ./src/database/migrations/Migration", //마이그레이션 생성
     "migration:generate": "npm run typeorm migration:generate ./src/database/migrations/Migration", //마이그레이션 생성(자동생성)-> 폴더 구조 없이 
     "migration:run": "npm run typeorm  migration:run", //실행
     "migration:revert": "npm run typeorm migration:revert"  마이그레이션 되돌리기
+```
 
 4. 마이그레이션 생성
 npm run migration:generate -- -n  마이그레이션 이름 
