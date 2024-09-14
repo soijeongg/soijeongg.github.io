@@ -4,7 +4,7 @@ read_time: true
 show_date: true
 title: "nest.js에서 jwt발급 및 검증 "
 date: 2024-09-10 10:00:20 -0600
-description: "multer 사용해 파일 전송"
+description: "nest.js에서 jwt발급 및 검증"
 image:  https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
 tags: 
     - coding
