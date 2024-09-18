@@ -5,7 +5,7 @@ show_date: true
 title: "typeORM과 queryBuilder"
 date: 2024-06-05 15:00:20 -0600
 description: "typeORM과 queryBuilder의 옵션"
-
+image: https://miro.medium.com/v2/resize:fit:820/0*xqTsRQ3MOnE1j2D9.png
 tags: 
     - coding
     - diary
