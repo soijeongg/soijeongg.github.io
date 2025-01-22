@@ -5,7 +5,7 @@ show_date: true
 title: "ubuntu vm에서 docker-compose 돌리기"
 date: 2025-01-14 10:00:20 -0600
 description: "로컬에서 이미지 빌드 후 vm에 전송하기"
-image:  https://image.yes24.com/goods/78586788/XL
+image:  https://www.oracle.com/a/ocom/img/rh03v3fa-virtualbox.jpg
 tags: 
     - coding
     - diary
@@ -17,16 +17,16 @@ toc: no
 ---
 ## 목차 
 0. vm 설치
-1. 컴퓨터 도커 세팅
-2. vm 도커 세팅
-3. 로컬에서 도커 파일 생성
-4. vm으로 도커파일 전송 및 실행
-5. 도커 컴포즈 실행을 위한 vm 도커컴포즈 설치 
-6. mysql 도커 파일 
-7. ngnix 도커파일
-8. 도커 컴포즈 파일 생성
-9. 혹시 만약 잘못보내서 삭제해야될때 
-10. 에러들 (갑자기 리슨 안나오면 그냥 스탐하고 다시 ) && 기타
+1. 컴퓨터 도커 세팅  
+2. vm 도커 세팅  
+3. 로컬에서 도커 파일 생성  
+4. vm으로 도커파일 전송 및 실행  
+5. 도커 컴포즈 실행을 위한 vm 도커컴포즈 설치   
+6. mysql 도커 파일   
+7. ngnix 도커파일  
+8. 도커 컴포즈 파일 생성  
+9. 혹시 만약 잘못보내서 삭제해야될때   
+10. 에러들 (갑자기 리슨 안나오면 그냥 스탐하고 다시 ) && 기타  
 
 ## 가상머신 설치 
 oracle Vm 설치 홈페이지[https://www.oracle.com/kr/virtualization/technologies/vm/downloads/virtualbox-downloads.html#vbox]에 들어가 본인의 운영체제에 맞는 installer를 설치한다   
@@ -40,7 +40,9 @@ oracle Vm 설치 홈페이지[https://www.oracle.com/kr/virtualization/technolog
 만약 안보인다면 자신이 다운받았던 폴더에 들어가 찾는다 
 ![alt text](../assets/img/uploads/makereal.PNG)
 
-
+무인설치 부분에 들어가 암호를 사용자 암호를 바꾼다  
+하드웨어의 경우 기본 메모리는 11245로 프로세서는 cpu6개로 설정했다  
+그 후 처음 화면의 시작을 눌러 들어간다
 
 ## 컴퓨터 도커 세팅
 ### 1. 도커 데스크탑 설치 
@@ -75,8 +77,7 @@ software-properties-common: 우분투에서 ppa를 사용하기 위한 패키지
 
 **PPA란**
 
-Personal Package Archive로 우분투는 우분투 소프트웨어 센터에 등록된 프로그램만 다운 받을 수 있는데 안전하지만 이는 등록되지 않은 프로그램을 다운받을 수 없고 업데이트가 느리다는 단점이 있다 
-
+Personal Package Archive로 우분투는 우분투 소프트웨어 센터에 등록된 프로그램만 다운 받을 수 있는데 안전하지만 이는 등록되지 않은 프로그램을 다운받을 수 없고 업데이트가 느리다는 단점이 있다  
 이때 등록되지 않은 프로그램과 최신버전을 다운받을 수 있게 해주는 것이 PPA이다
 
 #### 2-2. 도커 공식 GPG 키 추가 
@@ -163,4 +164,8 @@ EXPOSE 9104
 # 이미지로 부터 컨테이너 생성해 최초로 실행할때 수행
 CMD ["npx", "nodemon", "app.js"]
 ```
-ㅇ=
+기본이 되는 api의 도커파일을 만들고 도커 빌드 명령어를 사용해 이미지를 빌드한다  
+빌드시 args로 설정한 환경변수에 값을 전달해야 하는데 빌드명령어의  buildargs에 값을 넣어 전송한다  
+환경변수를 뜻하는 env는 외부에서의 값 전달이 불가능하기 때문에 도커파일에 값을 하드코딩 해줘야 한다  
+그렇게 되면 값을 숨기기가 불가능해진다  
+그렇기 때문에 외부에서 동적으로 값 전달이 가능한 args를 사용한다 
