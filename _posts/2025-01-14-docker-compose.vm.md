@@ -15,6 +15,39 @@ author: soi
 toc: no
 
 ---
+## 목차 
+0. vm 설치
+1. 컴퓨터 도커 세팅
+2. vm 도커 세팅
+3. 로컬에서 도커 파일 생성
+4. vm으로 도커파일 전송 및 실행
+5. 도커 컴포즈 실행을 위한 vm 도커컴포즈 설치 
+6. mysql 도커 파일 
+7. ngnix 도커파일
+8. 도커 컴포즈 파일 생성
+9. 혹시 만약 잘못보내서 삭제해야될때 
+10. 에러들 (갑자기 리슨 안나오면 그냥 스탐하고 다시 ) && 기타
+
+## 가상머신 설치 
+oracle Vm 설치 홈페이지[https://www.oracle.com/kr/virtualization/technologies/vm/downloads/virtualbox-downloads.html#vbox]에 들어가 본인의 운영체제에 맞는 installer를 설치한다   
+해당 가상머신에서 돌아갈 우분투 운영체제를 설치한다[https://ubuntu.com/download/desktop]  
+현재는 lts가 가 24.0.1. 이여서 이것 밖에 없는데 나는 22.0.4를 설치했다[https://releases.ubuntu.com/22.04/]
+가상머신을 실행한다
+![alt text](../assets/img/uploads/vmvmvm.PNG)
+
+파란색의 새로 만들기에 들어간다   
+이름을 쓰고 iso이미지는 내려보면 다운받았던 ISO이미지가 보인다  
+만약 안보인다면 자신이 다운받았던 폴더에 들어가 찾는다 
+![alt text](../assets/img/uploads/makereal.PNG)
+
+
+
+## 컴퓨터 도커 세팅
+### 1. 도커 데스크탑 설치 
+도커 공식 홈페이지[https://www.docker.com/]에 들어가 Download Docker Desktop을 눌러 도커 데스크톱을 설치한다 
+
+설치 후 프로그램을 실행해 도커 엔진이 돌아가게 한다 
+
 ### 1. vm 접속후 도커 설치하기 위해 필요한 패키지 설치하기 위해 sudo 권한 갖기 
 
 ``` bash
@@ -35,10 +68,10 @@ sudo apt-get install \
  curl \
  software-properties-common
 ```
-apt-transport-https: HTTPS 프로토콜을 사용하여 패키지를 다운로드할 수 있도록 지원하는 패키지
-ca-certificates:HTTPS 통신 시 인증서 검증하는 데 필요한 인증서 묶음, 인증서가 유효한지 확인함
-curl: URL에서 데이터 가져오거나 서버로 데이터 요청(api 요청)
-software-properties-common: 우분투에서 ppa를 사용하기 위한 패키지
+apt-transport-https: HTTPS 프로토콜을 사용하여 패키지를 다운로드할 수 있도록 지원하는 패키지  
+ca-certificates:HTTPS 통신 시 인증서 검증하는 데 필요한 인증서 묶음, 인증서가 유효한지 확인함  
+curl: URL에서 데이터 가져오거나 서버로 데이터 요청(api 요청)  
+software-properties-common: 우분투에서 ppa를 사용하기 위한 패키지  
 
 **PPA란**
 
@@ -96,9 +129,38 @@ sudo newgrp docker
 
 도커의 이미지에 필요한 env를 정리한다 이 env들이 해당 도커 파일을 사용해 도커 이미지 생성시 필요하다 
 ```bash
-COOKIE_SECRET
-NODE_ENV
+
 PORT
 CORS
 ```
-이런 env들을 arg라는 
+``` Docker
+# 기반이 되는 이미지 설정
+FROM node:22.10-alpine
+
+# ARG 선언
+ARG PORT
+ARG CORS
+
+# ENV 설정 \은 줄변경하기 위한 표시
+ENV AWS_BUCKET_NAME=${AWS_BUCKET_NAME} \
+    AWS_REGION=${AWS_REGION}  
+
+# #Docker 이미지 내부에서 RUN, CMD, ENTRYPOINT의 명령이 실행될 디렉터리를 설정합니다.
+WORKDIR /usr/src/app
+
+# 외부 패키지 설치를 위해 package.json, package-lock.json 복사
+COPY package.json package-lock.json ./
+
+# 패키지 설치 (RUN은 도커 이미지를 빌드하는 순간에 실행됨)
+RUN  npm install
+
+# 폴더안의 내용을 전부 복사해 vm에넣기  COPY (로컬 위치 ) (도커속 위치)
+COPY . .
+
+# 사용할 포트를 내보낸다 
+EXPOSE 9104
+
+# 이미지로 부터 컨테이너 생성해 최초로 실행할때 수행
+CMD ["npx", "nodemon", "app.js"]
+```
+ㅇ=
