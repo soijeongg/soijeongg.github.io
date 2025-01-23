@@ -28,9 +28,9 @@ toc: no
 9. 혹시 만약 잘못보내서 삭제해야될때     
 
 ## 가상머신 설치 
-oracle Vm 설치 홈페이지[https://www.oracle.com/kr/virtualization/technologies/vm/downloads/virtualbox-downloads.html#vbox]에 들어가 본인의 운영체제에 맞는 installer를 설치한다   
-해당 가상머신에서 돌아갈 우분투 운영체제를 설치한다[https://ubuntu.com/download/desktop]  
-현재는 lts가 가 24.0.1. 이여서 이것 밖에 없는데 나는 22.0.4를 설치했다[https://releases.ubuntu.com/22.04/]
+oracle Vm 설치 홈페이지[링크](https://www.oracle.com/kr/virtualization/technologies/vm/downloads/virtualbox-downloads.html#vbox)에 들어가 본인의 운영체제에 맞는 installer를 설치한다   
+해당 가상머신에서 돌아갈 우분투 운영체제를 설치한다[링크](https://ubuntu.com/download/desktop)  
+현재는 lts가 가 24.0.1. 이여서 이것 밖에 없는데 나는 22.0.4를 설치했다[링크](https://releases.ubuntu.com/22.04/)
 가상머신을 실행한다
 ![alt text](../assets/img/uploads/vmvmvm.PNG)
 
@@ -45,7 +45,7 @@ oracle Vm 설치 홈페이지[https://www.oracle.com/kr/virtualization/technolog
 
 ## 컴퓨터 도커 세팅
 ### 1. 도커 데스크탑 설치 
-도커 공식 홈페이지[https://www.docker.com/]에 들어가 Download Docker Desktop을 눌러 도커 데스크톱을 설치한다 
+도커 공식 홈페이지[링크](https://www.docker.com/)에 들어가 Download Docker Desktop을 눌러 도커 데스크톱을 설치한다 
 
 설치 후 프로그램을 실행해 도커 엔진이 돌아가게 한다 
 
@@ -55,7 +55,8 @@ oracle Vm 설치 홈페이지[https://www.oracle.com/kr/virtualization/technolog
 su
 ```
 
-입력 후 비밀번호 입력하라는 말이 나오면 기존에 접속할때 사용했던 비밀번호 입력한다 -> 유저 이름 뒤에 #이 붙으면 성공
+입력 후 비밀번호 입력하라는 말이 나오면 기존에 접속할때 사용했던 비밀번호 입력  
+유저 이름 뒤에 #이 붙으면 성공
 
 ## 2. 도커 설치
 
@@ -124,7 +125,7 @@ sudo newgrp docker
 
 도커 파일을 작성하고 이 도커파일을 빌드해 도커 이미지를 만든다 이 도커파일에는 도커의 토대가 될 이미지나 실행할명령어를 기재한다 
 
-해당 도커 파일의 명령어는 이 [링크] (https://velog.io/@soijeongg/Dockerfile-%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%A7%8C%EB%93%A4%EA%B8%B0)에서 확인 가능하다 
+해당 도커 파일의 명령어는 이 [링크](https://velog.io/@soijeongg/Dockerfile-%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%A7%8C%EB%93%A4%EA%B8%B0)에서 확인 가능하다 
 해당 서버의 레포지토리에  dockerfile을 생성한다 
 
 도커의 이미지에 필요한 env를 정리한다 이 env들이 해당 도커 파일을 사용해 도커 이미지 생성시 필요하다 
@@ -293,6 +294,7 @@ EXPOSE 80
 nginx.conf는 nginx의 기본 설정파일이고 default.conf는 리버스 프록시를 하기 위한 서버 설정이 들어있다  
 
 1. nginx.conf
+
 ``` 
 events {
     worker_connections 1024;
@@ -387,7 +389,7 @@ location의  proxy_pass에 위의 포트로 들어오면 보내줄 주소를 적
 ## 7. docker-compose 파일 생성
 도커파일을 만든 경로에 docker-compose.yaml 파일을 생성한다 
 
-```
+```yaml
 services:
   api:
     build: 
@@ -455,7 +457,7 @@ networks:
 
 ### 7-1. api 서비스 
 
-```YAML
+```yaml
 services:
   api:
     build: 
